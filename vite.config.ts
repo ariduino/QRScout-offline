@@ -31,10 +31,9 @@ export default defineConfig({
           },
           {
             urlPattern: /\/QRScout-offline\/.*$/,
-            handler: 'NetworkFirst',
+            handler: 'StaleWhileRevalidate',
             options: {
               cacheName: 'qrscout-pages',
-              networkTimeoutSeconds: 3,
               cacheableResponse: {
                 statuses: [0, 200],
               },
