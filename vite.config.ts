@@ -5,7 +5,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/QRScout/',
+  base: '/QRScout-offline/',
   plugins: [
     react(),
     VitePWA({
@@ -14,13 +14,13 @@ export default defineConfig({
       manifest: false,
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,ttf,json}'],
-        navigateFallback: '/QRScout/index.html',
+        navigateFallback: '/QRScout-offline/index.html',
         cleanupOutdatedCaches: true,
         clientsClaim: true,
         skipWaiting: true,
         runtimeCaching: [
           {
-            urlPattern: /\/QRScout\/.*\.(?:js|css|json|png|svg|ico|ttf)$/,
+            urlPattern: /\/QRScout-offline\/.*\.(?:js|css|json|png|svg|ico|ttf)$/,
             handler: 'StaleWhileRevalidate',
             options: {
               cacheName: 'qrscout-static-assets',
@@ -30,7 +30,7 @@ export default defineConfig({
             },
           },
           {
-            urlPattern: /\/QRScout\/.*$/,
+            urlPattern: /\/QRScout-offline\/.*$/,
             handler: 'NetworkFirst',
             options: {
               cacheName: 'qrscout-pages',
