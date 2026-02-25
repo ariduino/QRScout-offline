@@ -20,24 +20,10 @@ if (import.meta.env.DEV) {
     });
   }
 } else {
-  const updateSW = registerSW({
+  registerSW({
     immediate: true,
     onNeedRefresh() {
-      updateSW(true);
-    },
-    onRegisteredSW(_swUrl, registration) {
-      if (!registration) {
-        return;
-      }
-
-      const intervalMs = 60 * 60 * 1000;
-      setInterval(() => {
-        registration.update();
-      }, intervalMs);
-
-      window.addEventListener('online', () => {
-        registration.update();
-      });
+      // Avoid force-reloading while the device may be offline.
     },
     onRegisterError(error) {
       console.error('Service worker registration failed:', error);

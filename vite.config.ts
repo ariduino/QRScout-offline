@@ -12,9 +12,10 @@ export default defineConfig({
       registerType: 'autoUpdate',
       injectRegister: 'auto',
       manifest: false,
+      scope: '/QRScout-offline/',
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,ttf,json}'],
-        navigateFallback: '/QRScout-offline/index.html',
+        navigateFallback: 'index.html',
         cleanupOutdatedCaches: true,
         clientsClaim: true,
         skipWaiting: true,
@@ -30,7 +31,7 @@ export default defineConfig({
             },
           },
           {
-            urlPattern: /\/QRScout-offline\/.*$/,
+            urlPattern: /\/QRScout-offline(?:\/.*)?$/,
             handler: 'StaleWhileRevalidate',
             options: {
               cacheName: 'qrscout-pages',
